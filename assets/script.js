@@ -170,7 +170,13 @@ const translations = {
         "cert6-title": "European Computer Driving Licence",
         "cert6-org": "ECDL Czech Republic",
         "nav-manual": "Logomanuál",
-        "nav-certifikaty": "Certifikáty"
+        "nav-certifikaty": "Certifikáty",
+        "cert7-title": "CCNA Routing and Switching: Introduction to Networks",
+        "cert7-org": "Cisco Networking Academy",
+        "cert8-title": "Seyfor MoneyS3 certifikát",
+        "cert8-org": "Seyfor",
+        "cert9-title": "Partner: NDG Linux Essentials",
+        "cert9-org": "Cisco",
     },
     "en": {
         "nav-uvod": "Home",
@@ -235,7 +241,13 @@ const translations = {
         "cert6-title": "European Computer Driving Licence",
         "cert6-org": "ECDL Czech Republic",
         "nav-manual": "Brand Manual",
-        "nav-certifikaty": "Certificates"
+        "nav-certifikaty": "Certificates",
+        "cert7-title": "CCNA Routing and Switching: Introduction to Networks",
+        "cert7-org": "Cisco Networking Academy",
+        "cert8-title": "Seyfor MoneyS3 Certificate",
+        "cert8-org": "Seyfor",
+        "cert9-title": "Partner: NDG Linux Essentials",
+        "cert9-org": "Cisco",
     }
 };
 
