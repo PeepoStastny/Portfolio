@@ -168,7 +168,9 @@ const translations = {
         "cert5-title": "Database Foundations",
         "cert5-org": "Oracle",
         "cert6-title": "European Computer Driving Licence",
-        "cert6-org": "ECDL Czech Republic"
+        "cert6-org": "ECDL Czech Republic",
+        "nav-manual": "Logomanuál",
+        "nav-certifikaty": "Certifikáty"
     },
     "en": {
         "nav-uvod": "Home",
@@ -232,7 +234,8 @@ const translations = {
         "cert5-org": "Oracle",
         "cert6-title": "European Computer Driving Licence",
         "cert6-org": "ECDL Czech Republic",
-
+        "nav-manual": "Brand Manual",
+        "nav-certifikaty": "Certificates"
     }
 };
 
@@ -285,7 +288,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
-// --- TLAČÍTKO NÁVRAT NAHORU ---
+
 const backToTopBtn = document.getElementById("back-to-top");
 
 if (backToTopBtn) {

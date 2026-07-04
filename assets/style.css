@@ -136,10 +136,10 @@ body {
 .nav-odkazy a {
     color: var(--text-color);
     text-decoration: none;
-    margin: 0 15px;
-    font-size: 0.9rem;
+    margin: 0 8px;
+    font-size: 0.8rem; 
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 1px; 
     transition: color 0.3s ease, border-bottom 0.3s ease;
     border-bottom: 2px solid transparent;
     padding-bottom: 5px;
@@ -506,7 +506,7 @@ footer {
     font-weight: 300;
 }
 
-/* --- ČASOVÁ OSA (ZKUŠENOSTI A VZDĚLÁNÍ) --- */
+
 .timeline-sekce {
     max-width: 900px;
     margin: 0 auto 80px;
@@ -538,7 +538,7 @@ footer {
     margin-bottom: 0;
 }
 
-/* Svítící body na ose */
+
 .timeline-dot {
     position: absolute;
     left: -45px;
@@ -550,7 +550,7 @@ footer {
     box-shadow: 0 0 10px rgba(170, 170, 170, 0.5);
 }
 
-/* Blok s obsahem */
+
 .timeline-content {
     background-color: rgba(30, 30, 30, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -594,7 +594,7 @@ footer {
     line-height: 1.6;
 }
 
-/* --- TLAČÍTKO NÁVRAT NAHORU --- */
+
 #back-to-top {
     position: fixed;
     bottom: 30px;
@@ -632,7 +632,7 @@ footer {
     height: 22px;
 }
 
-/* --- CERTIFIKÁTY --- */
+
 .certifikaty-sekce {
     max-width: 1200px;
     margin: 0 auto 80px;
@@ -690,7 +690,7 @@ footer {
     }
 }
 
-/* Úprava pro menší telefony */
+
 @media (max-width: 600px) {
     .timeline-container {
         padding-left: 25px;
