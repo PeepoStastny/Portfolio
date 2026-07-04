@@ -155,7 +155,20 @@ const translations = {
         "exp4-date": "2018 - 2022",
         "exp4-title": "Informační technologie",
         "exp4-company": "DELTA - Střední škola informatiky a ekonomie",
-        "exp4-desc": "Středoškolské studium se zaměřením na IT, programování a databázové systémy."
+        "exp4-desc": "Středoškolské studium se zaměřením na IT, programování a databázové systémy.",
+        "nadpis-certifikaty": "Certifikace a Ocenění",
+        "cert1-title": "EF SET English Certificate (C2 Proficient)",
+        "cert1-org": "EF SET",
+        "cert2-title": "Základy digitálního marketingu",
+        "cert2-org": "Google Digital Garage",
+        "cert3-title": "Elements of AI",
+        "cert3-org": "University of Helsinki",
+        "cert4-title": "CCNA: Switching, Routing & Wireless",
+        "cert4-org": "Cisco",
+        "cert5-title": "Database Foundations",
+        "cert5-org": "Oracle",
+        "cert6-title": "European Computer Driving Licence",
+        "cert6-org": "ECDL Czech Republic"
     },
     "en": {
         "nav-uvod": "Home",
@@ -205,7 +218,20 @@ const translations = {
         "exp4-date": "2018 - 2022",
         "exp4-title": "Information Technology",
         "exp4-company": "DELTA - High School of Informatics and Economics",
-        "exp4-desc": "High school studies focusing on IT, programming, and database systems."
+        "exp4-desc": "High school studies focusing on IT, programming, and database systems.",
+        "nadpis-certifikaty": "Certifications & Awards",
+        "cert1-title": "EF SET English Certificate (C2 Proficient)",
+        "cert1-org": "EF SET",
+        "cert2-title": "Fundamentals of Digital Marketing",
+        "cert2-org": "Google Digital Garage",
+        "cert3-title": "Elements of AI",
+        "cert3-org": "University of Helsinki",
+        "cert4-title": "CCNA: Switching, Routing & Wireless",
+        "cert4-org": "Cisco",
+        "cert5-title": "Database Foundations",
+        "cert5-org": "Oracle",
+        "cert6-title": "European Computer Driving Licence",
+        "cert6-org": "ECDL Czech Republic",
 
     }
 };
@@ -259,3 +285,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+// --- TLAČÍTKO NÁVRAT NAHORU ---
+const backToTopBtn = document.getElementById("back-to-top");
+
+if (backToTopBtn) {
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 500) {
+            backToTopBtn.classList.add("zobrazit");
+        } else {
+            backToTopBtn.classList.remove("zobrazit");
+        }
+    });
+
+    backToTopBtn.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+}
