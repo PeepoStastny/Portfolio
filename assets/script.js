@@ -16,21 +16,29 @@ navLinks.forEach(link => {
     });
 });
 
-const sections = document.querySelectorAll('header, section');
-const observerOptions = { root: null, rootMargin: '-50% 0px -50% 0px', threshold: 0 };
+const sections = document.querySelectorAll('header, section[id]');
+const observerOptions = { 
+    root: null, 
+    rootMargin: '-20% 0px -65% 0px', 
+    threshold: 0 
+};
+
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
             navLinks.forEach(link => {
-                link.classList.remove('aktivni');
                 const href = link.getAttribute('href');
-                if (href && href.startsWith('#') && href.substring(1) === entry.target.id) {
+                if (href === `#${id}`) {
                     link.classList.add('aktivni');
+                } else {
+                    link.classList.remove('aktivni');
                 }
             });
         }
     });
 }, observerOptions);
+
 sections.forEach(sec => observer.observe(sec));
 
 const kontaktForm = document.getElementById('kontakt-formular');
