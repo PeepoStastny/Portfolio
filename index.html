@@ -28,6 +28,8 @@
             <a href="#uvod" data-i18n="nav-uvod">Úvod</a>
             <a href="#o-mne" data-i18n="nav-omne">O mně</a>
             <a href="#zkusenosti" data-i18n="nav-zkusenosti">Zkušenosti</a>
+            <a href="#dovednosti-zajmy" data-i18n="nav-dovednosti-zajmy">Dovednosti & Zájmy</a>
+            <a href="#loga" data-i18n="nav-loga">Loga</a>
             <a href="#3D_modely" data-i18n="nav-3d">3D Modely</a>
             <a href="#plakaty" data-i18n="nav-plakaty">Plakáty</a>
             <a href="#mockupy" data-i18n="nav-mockupy">Mockupy</a>
@@ -116,7 +118,84 @@
 
             </div>
         </section>
+        <section class="skills-interests-sekce" id="dovednosti-zajmy">
+    <h2 class="kategorie-nadpis" data-i18n="nadpis-skills">Dovednosti & Zájmy</h2>
+    <div class="skills-interests-grid">
+        
+        <!-- Karta dovedností -->
+        <div class="skill-card">
+            <h3 data-i18n="skills-design-title">Design & Prototypování</h3>
+            <div class="tag-cloud">
+                <span class="skill-tag">Figma</span>
+                <span class="skill-tag">Penpot</span>
+                <span class="skill-tag">UI/UX Design</span>
+                <span class="skill-tag">Design Systémy</span>
+                <span class="skill-tag">Wireframing</span>
+                <span class="skill-tag">Adobe Photoshop</span>
+                <span class="skill-tag">Adobe Illustrator</span>
+                <span class="skill-tag">Vektorová grafika</span>
+            </div>
+        </div>
+
+        <!-- Karta technických dovedností -->
+        <div class="skill-card">
+            <h3 data-i18n="skills-tech-title">Technologie & 3D</h3>
+            <div class="tag-cloud">
+                <span class="skill-tag">Blender 3D</span>
+                <span class="skill-tag">HTML5 & CSS3</span>
+                <span class="skill-tag">JavaScript</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Linux</span>
+            </div>
+        </div>
+
+        <!-- Karta zájmů -->
+        <div class="skill-card">
+            <h3 data-i18n="interests-title">Osobní zájmy</h3>
+            <div class="tag-cloud">
+                <span class="skill-tag">3D Modelování</span>
+                <span class="skill-tag">Game Development</span>
+                <span class="skill-tag">Videohry</span>
+                <span class="skill-tag">Fotografie</span>
+                <span class="skill-tag">Silový trénink</span>
+                <span class="skill-tag">Cyklistika</span>
+                <span class="skill-tag">Audiotechnika</span>
+            </div>
+        </div>
+
+    </div>
+</section>
         <div id="galerie">
+            <section id="loga">
+                <h2 class="kategorie-nadpis" data-i18n="nadpis-loga">Loga & Vizuální identity</h2>
+                <div class="gallery-container">
+                    <div class="gallery-item" onclick="openLightbox(this, 'image')">
+                        <img srcset="./images/loga/black.png 800w" sizes="(max-width: 600px) 100vw, 33vw"
+                            src="./images/loga/black.png" alt="Návrh loga 1" loading="lazy">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this, 'image')">
+                        <img srcset="./images/loga/white.png 800w" sizes="(max-width: 600px) 100vw, 33vw"
+                            src="./images/loga/white.png" alt="Návrh loga 2" loading="lazy">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this, 'image')">
+                        <img srcset="./images/loga/sporomat-logo-pokus-2.png 800w" sizes="(max-width: 600px) 100vw, 33vw"
+                            src="./images/loga/sporomat-logo-pokus-2.png" alt="Návrh loga 3" loading="lazy">
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(this, 'image')">
+                        <img srcset="./images/loga/sporomat-logo-pokus.png 800w" sizes="(max-width: 600px) 100vw, 33vw"
+                            src="./images/loga/sporomat-logo-pokus.png" alt="Návrh loga 4" loading="lazy">
+                    </div>
+                     <div class="gallery-item" onclick="openLightbox(this, 'image')">
+                        <img srcset="./images/loga/killer_bee_stamp.png 800w" sizes="(max-width: 600px) 100vw, 33vw"
+                            src="./images/loga/killer_bee_stamp.png" alt="Návrh loga 5" loading="lazy">
+                    </div>
+                     <div class="gallery-item" onclick="openLightbox(this, 'image')">
+                        <img srcset="./images/loga/killer_bee_negative.png 800w" sizes="(max-width: 600px) 100vw, 33vw"
+                            src="./images/loga/killer_bee_negative.png" alt="Návrh loga 6" loading="lazy">
+                    </div>
+                </div>
+            </section>
             <section id="3D_modely">
                 <h2 class="kategorie-nadpis" data-i18n="nadpis-3d">3D Modely</h2>
                 <div class="gallery-container">
