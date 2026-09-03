@@ -7,6 +7,22 @@
     <meta name="description"
         content="Portfolio Jáchyma Vondráčka. Profesionální 3D modely, grafický design, UI/UX, ilustrace a fotografie.">
     <meta name="theme-color" content="#121212">
+
+    <!-- Open Graph / LinkedIn / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jachymvondracek.cz/">
+    <meta property="og:title" content="Bc. Jáchym Vondráček – Portfolio">
+    <meta property="og:description"
+        content="Portfolio zaměřené na UX/UI design, 3D modelování, vizuální identity a digitální komunikaci.">
+    <meta property="og:image" content="./images/fotky/profil_fotka.png">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bc. Jáchym Vondráček – Portfolio">
+    <meta name="twitter:description"
+        content="Portfolio zaměřené na UX/UI design, 3D modelování, vizuální identity a digitální komunikaci.">
+    <meta name="twitter:image" content="./images/fotky/profil_fotka.png">
+
     <title>Portfolio - Jáchym Vondráček</title>
     <link rel="preload" href="./images/fotky/profil_fotka.png" as="image">
     <link rel="icon" href="./images/favicon/favicon_.png">
@@ -14,6 +30,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Ochrana proti probliknutí motivu a synchronizace barvy lišty -->
     <script>
         (function() {
             const saved = localStorage.getItem('preferredTheme');
@@ -56,7 +74,8 @@
         </div>
         <div class="nav-ovladani">
             <button id="theme-toggle" class="theme-btn" aria-label="Přepnout světlý/tmavý režim" title="Změnit motiv">
-                <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="5"></circle>
                     <line x1="12" y1="1" x2="12" y2="3"></line>
                     <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -67,7 +86,8 @@
                     <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                     <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                 </svg>
-                <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                 </svg>
             </button>

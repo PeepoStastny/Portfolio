@@ -357,7 +357,19 @@ header p {
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.3);
 }
 
-.gallery-item img,
+/* Plynulé zobrazení snímků v galerii */
+.gallery-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.gallery-item img.nacteno {
+    opacity: 1;
+}
+
 .gallery-item video {
     width: 100%;
     height: auto;
@@ -527,6 +539,14 @@ button {
 button:hover {
     background-color: var(--text-color);
     color: var(--bg-color);
+}
+
+/* Stav tlačítka při odesílání formuláře */
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+    border-color: var(--accent-color);
 }
 
 .formular-zprava {

@@ -41,27 +41,7 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(sec => observer.observe(sec));
 
-const kontaktForm = document.getElementById('kontakt-formular');
-const zpravaUspech = document.getElementById('zprava-uspech');
-
-if (kontaktForm) {
-    kontaktForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const formData = new FormData(kontaktForm);
-
-        fetch(kontaktForm.action, {
-            method: 'POST',
-            body: formData
-        }).then(response => {
-            if (response.ok) {
-                zpravaUspech.classList.add('zobrazit');
-                kontaktForm.reset();
-                setTimeout(() => zpravaUspech.classList.remove('zobrazit'), 5000);
-            }
-        }).catch(error => console.error(error));
-    });
-}
-
+// Lightbox modal se správou položek pro listování klávesami
 const lightbox = document.getElementById('lightbox');
 const mediaContainer = document.getElementById('lightbox-media-container');
 
@@ -181,6 +161,8 @@ const translations = {
         "form-email": "Váš email",
         "form-zprava": "Vaše zpráva",
         "form-btn": "Odeslat zprávu",
+        "form-odesilam": "Odesílám...",
+        "form-chyba": "Omlouvám se, zprávu se nepodařilo odeslat. Zkuste to prosím později.",
         "form-uspech": "Děkuji vám. Vaše zpráva byla úspěšně odeslána. Brzy se vám ozvu.",
         "footer-text": "© 2026 Jáchym Vondráček. Všechna práva vyhrazena.",
         "nadpis-zkusenosti": "Zkušenosti a Vzdělání",
@@ -280,6 +262,8 @@ const translations = {
         "form-email": "Your Email",
         "form-zprava": "Your Message",
         "form-btn": "Send Message",
+        "form-odesilam": "Sending...",
+        "form-chyba": "Failed to send message. Please try again later.",
         "form-uspech": "Thank you. Your message has been successfully sent. I will get back to you soon.",
         "footer-text": "© 2026 Jáchym Vondráček. All rights reserved.",
         "nadpis-zkusenosti": "Experience & Education",
@@ -382,6 +366,7 @@ function applyLanguage(lang) {
     }
 }
 
+// Správa motivu a synchronizace barvy stavového řádku prohlížeče
 const themeMediaQuery = window.matchMedia("(prefers-color-scheme: light)");
 let savedTheme = localStorage.getItem("preferredTheme");
 let currentTheme = savedTheme || (themeMediaQuery.matches ? "light" : "dark");
@@ -403,6 +388,57 @@ themeMediaQuery.addEventListener("change", (e) => {
     if (!localStorage.getItem("preferredTheme")) {
         currentTheme = e.matches ? "light" : "dark";
         applyTheme(currentTheme);
+    }
+});
+
+// Zpracování kontaktního formuláře s indikací odesílání
+const kontaktForm = document.getElementById('kontakt-formular');
+const zpravaUspech = document.getElementById('zprava-uspech');
+
+if (kontaktForm) {
+    kontaktForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const submitBtn = kontaktForm.querySelector('button[type="submit"]');
+        const puvodniText = submitBtn.textContent;
+        const textOdesilam = translations[currentLang]?.["form-odesilam"] || "Odesílám...";
+        const textChyba = translations[currentLang]?.["form-chyba"] || "Došlo k chybě při odesílání.";
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = textOdesilam;
+
+        const formData = new FormData(kontaktForm);
+
+        fetch(kontaktForm.action, {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                zpravaUspech.classList.add('zobrazit');
+                kontaktForm.reset();
+                setTimeout(() => zpravaUspech.classList.remove('zobrazit'), 5000);
+            } else {
+                alert(textChyba);
+            }
+        }).catch(error => {
+            console.error(error);
+            alert(textChyba);
+        }).finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = puvodniText;
+        });
+    });
+}
+
+// Fade-in efekt načítání snímků galerie
+const lazyGalleryImages = document.querySelectorAll('.gallery-item img');
+
+lazyGalleryImages.forEach(img => {
+    if (img.complete) {
+        img.classList.add('nacteno');
+    } else {
+        img.addEventListener('load', () => img.classList.add('nacteno'));
+        img.addEventListener('error', () => img.classList.add('nacteno'));
     }
 });
 
