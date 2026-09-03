@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Portfolio Jáchyma Vondráčka. Profesionální 3D modely, grafický design, UI/UX, ilustrace a fotografie.">
+    <meta name="theme-color" content="#121212">
     <title>Portfolio - Jáchym Vondráček</title>
     <link rel="preload" href="./images/fotky/profil_fotka.png" as="image">
     <link rel="icon" href="./images/favicon/favicon_.png">
@@ -13,6 +14,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;600&display=swap" rel="stylesheet">
+    <script>
+        (function() {
+            const saved = localStorage.getItem('preferredTheme');
+            const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+            const isLight = saved === 'light' || (!saved && prefersLight);
+            if (isLight) {
+                document.documentElement.setAttribute('data-theme', 'light');
+                const metaTheme = document.querySelector('meta[name="theme-color"]');
+                if (metaTheme) metaTheme.setAttribute('content', '#f7f8fa');
+            }
+        })();
+    </script>
 </head>
 
 <body>
@@ -40,14 +53,30 @@
             <a href="#manual" data-i18n="nav-manual">Logomanuál</a>
             <a href="#certifikaty" data-i18n="nav-certifikaty">Certifikáty</a>
             <a href="#kontakt" data-i18n="nav-kontakt">Kontakt</a>
-
         </div>
-        <button id="language-toggle" class="lang-btn" aria-label="Přepnout jazyk">EN</button>
-
+        <div class="nav-ovladani">
+            <button id="theme-toggle" class="theme-btn" aria-label="Přepnout světlý/tmavý režim" title="Změnit motiv">
+                <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <button id="language-toggle" class="lang-btn" aria-label="Přepnout jazyk">EN</button>
+        </div>
     </nav>
     <header id="uvod">
         <img src="./images/fotky/profil_fotka.png" alt="Portrét - Jáchym Vondráček" class="profilova-fotka">
-        <h1 id="jmeno-autora">Jáchym Vondráček</h1>
+        <h1 id="jmeno-autora">Bc. Jáchym Vondráček</h1>
         <a href="https://www.linkedin.com/in/jáchym-vondráček-9a1624200" target="_blank" class="linkedin-odkaz"
             title="Můj LinkedIn profil">
             <svg class="linkedin-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -60,7 +89,7 @@
         <section class="o-mne-sekce" id="o-mne">
             <h2 data-i18n="omne-nadpis">O mně</h2>
             <p data-i18n="omne-p1">Jsem designér se zaměřením na UX/UI design a digitální komunikaci. Ve své práci
-                kombinuji kreativitu s analytickým přístupem - navrhuji rozhraní, která jsou nejen vizuálně podmanivá,
+                kombinuji kreativitu s analytickým přístupem – navrhuji rozhraní, která jsou nejen vizuálně podmanivá,
                 ale především bezchybně funkční a uživatelsky přívětivá.</p>
             <p data-i18n="omne-p2">K projektům přistupuji systematicky. Od počátečního uživatelského výzkumu a
                 wireframingu, přes tvorbu konzistentních design systémů, až po iterace a úzkou spolupráci s vývojáři. K
@@ -71,7 +100,6 @@
         <section class="timeline-sekce" id="zkusenosti">
             <h2 class="kategorie-nadpis" data-i18n="nadpis-zkusenosti">Zkušenosti a Vzdělání</h2>
             <div class="timeline-container">
-
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
@@ -115,54 +143,49 @@
                             systémy.</p>
                     </div>
                 </div>
-
             </div>
         </section>
         <section class="skills-interests-sekce" id="dovednosti-zajmy">
-    <h2 class="kategorie-nadpis" data-i18n="nadpis-skills">Dovednosti & Zájmy</h2>
-    <div class="skills-interests-grid">
-        
-        <div class="skill-card">
-            <h3 data-i18n="skills-design-title">Design & Prototypování</h3>
-            <div class="tag-cloud">
-                <span class="skill-tag" data-i18n="skill-figma">Figma</span>
-                <span class="skill-tag" data-i18n="skill-penpot">Penpot</span>
-                <span class="skill-tag" data-i18n="skill-uiux">UI/UX Design</span>
-                <span class="skill-tag" data-i18n="skill-design-systems">Design systémy</span>
-                <span class="skill-tag" data-i18n="skill-wireframing">Wireframing</span>
-                <span class="skill-tag" data-i18n="skill-photoshop">Adobe Photoshop</span>
-                <span class="skill-tag" data-i18n="skill-illustrator">Adobe Illustrator</span>
-                <span class="skill-tag" data-i18n="skill-vector">Vektorová grafika</span>
-            </div>
-        </div>
+            <h2 class="kategorie-nadpis" data-i18n="nadpis-skills">Dovednosti & Zájmy</h2>
+            <div class="skills-interests-grid">
+                <div class="skill-card">
+                    <h3 data-i18n="skills-design-title">Design & Prototypování</h3>
+                    <div class="tag-cloud">
+                        <span class="skill-tag" data-i18n="skill-figma">Figma</span>
+                        <span class="skill-tag" data-i18n="skill-penpot">Penpot</span>
+                        <span class="skill-tag" data-i18n="skill-uiux">UI/UX Design</span>
+                        <span class="skill-tag" data-i18n="skill-design-systems">Design systémy</span>
+                        <span class="skill-tag" data-i18n="skill-wireframing">Wireframing</span>
+                        <span class="skill-tag" data-i18n="skill-photoshop">Adobe Photoshop</span>
+                        <span class="skill-tag" data-i18n="skill-illustrator">Adobe Illustrator</span>
+                        <span class="skill-tag" data-i18n="skill-vector">Vektorová grafika</span>
+                    </div>
+                </div>
 
-        <div class="skill-card">
-            <h3 data-i18n="skills-tech-title">Technologie & 3D</h3>
-            <div class="tag-cloud">
-                <span class="skill-tag" data-i18n="skill-blender">Blender 3D</span>
-                <span class="skill-tag" data-i18n="skill-html-css">HTML5 & CSS3</span>
-                <span class="skill-tag" data-i18n="skill-javascript">JavaScript</span>
-                <span class="skill-tag" data-i18n="skill-python">Python</span>
-                <span class="skill-tag" data-i18n="skill-git">Git</span>
-                <span class="skill-tag" data-i18n="skill-linux">Linux</span>
-            </div>
-        </div>
+                <div class="skill-card">
+                    <h3 data-i18n="skills-tech-title">Technologie & 3D</h3>
+                    <div class="tag-cloud">
+                        <span class="skill-tag" data-i18n="skill-blender">Blender 3D</span>
+                        <span class="skill-tag" data-i18n="skill-html-css">HTML5 & CSS3</span>
+                        <span class="skill-tag" data-i18n="skill-javascript">JavaScript</span>
+                        <span class="skill-tag" data-i18n="skill-python">Python</span>
+                    </div>
+                </div>
 
-        <div class="skill-card">
-            <h3 data-i18n="interests-title">Osobní zájmy</h3>
-            <div class="tag-cloud">
-               <span class="skill-tag" data-i18n="interest-3d">3D Modelování</span>
-                <span class="skill-tag" data-i18n="interest-gamedev">Herní vývoj</span>
-                <span class="skill-tag" data-i18n="interest-gaming">Videohry</span>
-                <span class="skill-tag" data-i18n="interest-photo">Fotografie</span>
-                <span class="skill-tag" data-i18n="interest-fitness">Silový trénink</span>
-                <span class="skill-tag" data-i18n="interest-cycling">Cyklistika</span>
-                <span class="skill-tag" data-i18n="interest-audio">Audiotechnika</span>
+                <div class="skill-card">
+                    <h3 data-i18n="interests-title">Osobní zájmy</h3>
+                    <div class="tag-cloud">
+                        <span class="skill-tag" data-i18n="interest-3d">3D Modelování</span>
+                        <span class="skill-tag" data-i18n="interest-gamedev">Herní vývoj</span>
+                        <span class="skill-tag" data-i18n="interest-gaming">Videohry</span>
+                        <span class="skill-tag" data-i18n="interest-photo">Fotografie</span>
+                        <span class="skill-tag" data-i18n="interest-fitness">Silový trénink</span>
+                        <span class="skill-tag" data-i18n="interest-cycling">Cyklistika</span>
+                        <span class="skill-tag" data-i18n="interest-audio">Audiotechnika</span>
+                    </div>
+                </div>
             </div>
-        </div>
-
-    </div>
-</section>
+        </section>
         <div id="galerie">
             <section id="loga">
                 <h2 class="kategorie-nadpis" data-i18n="nadpis-loga">Loga & Vizuální identity</h2>
@@ -183,11 +206,11 @@
                         <img srcset="./images/loga/sporomat-logo-pokus.png 800w" sizes="(max-width: 600px) 100vw, 33vw"
                             src="./images/loga/sporomat-logo-pokus.png" alt="Návrh loga 4" loading="lazy">
                     </div>
-                     <div class="gallery-item" onclick="openLightbox(this, 'image')">
+                    <div class="gallery-item" onclick="openLightbox(this, 'image')">
                         <img srcset="./images/loga/killer_bee_stamp.png 800w" sizes="(max-width: 600px) 100vw, 33vw"
                             src="./images/loga/killer_bee_stamp.png" alt="Návrh loga 5" loading="lazy">
                     </div>
-                     <div class="gallery-item" onclick="openLightbox(this, 'image')">
+                    <div class="gallery-item" onclick="openLightbox(this, 'image')">
                         <img srcset="./images/loga/killer_bee_negative.png 800w" sizes="(max-width: 600px) 100vw, 33vw"
                             src="./images/loga/killer_bee_negative.png" alt="Návrh loga 6" loading="lazy">
                     </div>
@@ -355,32 +378,26 @@
         <section class="certifikaty-sekce" id="certifikaty">
             <h2 class="kategorie-nadpis" data-i18n="nadpis-certifikaty">Certifikace a Ocenění</h2>
             <div class="certifikaty-grid">
-
                 <div class="cert-item">
                     <h3 data-i18n="cert1-title">EF SET English Certificate (C2 Proficient)</h3>
                     <p data-i18n="cert1-org">EF SET</p>
                 </div>
-
                 <div class="cert-item">
                     <h3 data-i18n="cert2-title">Základy digitálního marketingu</h3>
                     <p data-i18n="cert2-org">Google Digital Garage</p>
                 </div>
-
                 <div class="cert-item">
                     <h3 data-i18n="cert3-title">Elements of AI</h3>
                     <p data-i18n="cert3-org">University of Helsinki</p>
                 </div>
-
                 <div class="cert-item">
                     <h3 data-i18n="cert4-title">CCNA: Switching, Routing & Wireless</h3>
                     <p data-i18n="cert4-org">Cisco</p>
                 </div>
-
                 <div class="cert-item">
                     <h3 data-i18n="cert5-title">Database Foundations</h3>
                     <p data-i18n="cert5-org">Oracle</p>
                 </div>
-
                 <div class="cert-item">
                     <h3 data-i18n="cert6-title">European Computer Driving Licence</h3>
                     <p data-i18n="cert6-org">ECDL Czech Republic</p>
@@ -389,12 +406,10 @@
                     <h3 data-i18n="cert7-title">CCNA Routing and Switching: Introduction to Networks</h3>
                     <p data-i18n="cert7-org">Cisco Networking Academy</p>
                 </div>
-
                 <div class="cert-item">
                     <h3 data-i18n="cert8-title">Seyfor MoneyS3 certifikát</h3>
                     <p data-i18n="cert8-org">Seyfor</p>
                 </div>
-
                 <div class="cert-item">
                     <h3 data-i18n="cert9-title">Partner: NDG Linux Essentials</h3>
                     <p data-i18n="cert9-org">Cisco</p>
@@ -423,13 +438,13 @@
         <span class="close-btn">&times;</span>
         <div id="lightbox-media-container"></div>
     </div>
-    <script src="./assets/script.js" defer></script>
     <button id="back-to-top" aria-label="Návrat nahoru">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
             stroke-linejoin="round">
             <polyline points="18 15 12 9 6 15"></polyline>
         </svg>
     </button>
+    <script src="./assets/script.js" defer></script>
 </body>
 
 </html>

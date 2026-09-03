@@ -65,36 +65,72 @@ if (kontaktForm) {
 const lightbox = document.getElementById('lightbox');
 const mediaContainer = document.getElementById('lightbox-media-container');
 
-function openLightbox(element, type) {
+let activeGalleryItems = [];
+let currentItemIndex = -1;
+
+function showLightboxItem(item) {
     mediaContainer.innerHTML = '';
-    if (type === 'image') {
-        const imgSource = element.querySelector('img').src;
+    const img = item.querySelector('img');
+    const video = item.querySelector('video source');
+
+    if (img) {
         const newImg = document.createElement('img');
-        newImg.src = imgSource;
+        newImg.src = img.currentSrc || img.src;
+        newImg.alt = img.alt || '';
         newImg.className = 'lightbox-content';
         mediaContainer.appendChild(newImg);
-    }
-    else if (type === 'video') {
-        const videoSource = element.querySelector('source').src;
+    } else if (video) {
         const newVideo = document.createElement('video');
-        newVideo.src = videoSource;
+        newVideo.src = video.src;
         newVideo.className = 'lightbox-content';
         newVideo.controls = true;
         newVideo.autoplay = true;
         mediaContainer.appendChild(newVideo);
     }
+}
+
+function openLightbox(element, type) {
+    const container = element.closest('.gallery-container') || element.parentElement;
+    activeGalleryItems = Array.from(container.querySelectorAll('.gallery-item'));
+    currentItemIndex = activeGalleryItems.indexOf(element);
+
+    showLightboxItem(element);
 
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
+function closeLightboxModal() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+    mediaContainer.innerHTML = '';
+    activeGalleryItems = [];
+    currentItemIndex = -1;
+}
+
 function closeLightbox(event) {
     if (event.target === lightbox || event.target.className === 'close-btn') {
-        lightbox.classList.remove('active');
-        document.body.style.overflow = 'auto';
-        mediaContainer.innerHTML = '';
+        closeLightboxModal();
     }
 }
+
+document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('active')) return;
+
+    if (e.key === 'Escape') {
+        closeLightboxModal();
+    } else if (e.key === 'ArrowRight') {
+        if (activeGalleryItems.length > 1) {
+            currentItemIndex = (currentItemIndex + 1) % activeGalleryItems.length;
+            showLightboxItem(activeGalleryItems[currentItemIndex]);
+        }
+    } else if (e.key === 'ArrowLeft') {
+        if (activeGalleryItems.length > 1) {
+            currentItemIndex = (currentItemIndex - 1 + activeGalleryItems.length) % activeGalleryItems.length;
+            showLightboxItem(activeGalleryItems[currentItemIndex]);
+        }
+    }
+});
 
 const lazyVideos = document.querySelectorAll('.lazy-video');
 if ('IntersectionObserver' in window) {
@@ -185,13 +221,6 @@ const translations = {
         "cert8-org": "Seyfor",
         "cert9-title": "Partner: NDG Linux Essentials",
         "cert9-org": "Cisco",
-        "nav-loga": "Loga",
-        "nadpis-loga": "Loga & Vizuální identity",
-        "nav-dovednosti-zajmy": "Dovednosti & Zájmy",
-        "nadpis-skills": "Dovednosti & Zájmy",
-        "skills-design-title": "Design & Prototypování",
-        "skills-tech-title": "Technologie & 3D",
-        "interests-title": "Osobní zájmy",
         "nav-loga": "Loga",
         "nadpis-loga": "Loga & Vizuální identity",
         "nav-dovednosti-zajmy": "Dovednosti & Zájmy",
@@ -298,13 +327,6 @@ const translations = {
         "skills-design-title": "Design & Prototyping",
         "skills-tech-title": "Technology & 3D",
         "interests-title": "Personal Interests",
-        "nav-loga": "Logos",
-        "nadpis-loga": "Logos & Visual Identities",
-        "nav-dovednosti-zajmy": "Skills & Interests",
-        "nadpis-skills": "Skills & Interests",
-        "skills-design-title": "Design & Prototyping",
-        "skills-tech-title": "Technology & 3D",
-        "interests-title": "Personal Interests",
         "skill-figma": "Figma",
         "skill-penpot": "Penpot",
         "skill-uiux": "UI/UX Design",
@@ -360,12 +382,36 @@ function applyLanguage(lang) {
     }
 }
 
+const themeMediaQuery = window.matchMedia("(prefers-color-scheme: light)");
+let savedTheme = localStorage.getItem("preferredTheme");
+let currentTheme = savedTheme || (themeMediaQuery.matches ? "light" : "dark");
+
+function applyTheme(theme) {
+    const metaTheme = document.querySelector('meta[name="theme-color"]');
+    if (theme === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+        if (metaTheme) metaTheme.setAttribute("content", "#f7f8fa");
+    } else {
+        document.documentElement.removeAttribute("data-theme");
+        if (metaTheme) metaTheme.setAttribute("content", "#121212");
+    }
+}
+
+applyTheme(currentTheme);
+
+themeMediaQuery.addEventListener("change", (e) => {
+    if (!localStorage.getItem("preferredTheme")) {
+        currentTheme = e.matches ? "light" : "dark";
+        applyTheme(currentTheme);
+    }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     applyLanguage(currentLang);
 
-    const toggleBtn = document.getElementById("language-toggle");
-    if (toggleBtn) {
-        toggleBtn.addEventListener("click", () => {
+    const langToggleBtn = document.getElementById("language-toggle");
+    if (langToggleBtn) {
+        langToggleBtn.addEventListener("click", () => {
             currentLang = currentLang === "cs" ? "en" : "cs";
             localStorage.setItem("preferredLanguage", currentLang);
             applyLanguage(currentLang);
@@ -375,6 +421,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 navMenu.classList.remove('active');
                 hamburger.setAttribute('aria-expanded', 'false');
             }
+        });
+    }
+
+    const themeToggleBtn = document.getElementById("theme-toggle");
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", () => {
+            currentTheme = currentTheme === "light" ? "dark" : "light";
+            localStorage.setItem("preferredTheme", currentTheme);
+            applyTheme(currentTheme);
         });
     }
 });
