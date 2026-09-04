@@ -49,6 +49,27 @@
 <body>
     <div class="animovane-pozadi" aria-hidden="true"></div>
     <nav class="hlavni-navigace">
+        <div class="nav-ovladani">
+            <button id="theme-toggle" class="theme-btn" aria-label="Přepnout světlý/tmavý režim" title="Změnit motiv">
+                <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
+            <button id="language-toggle" class="lang-btn" aria-label="Přepnout jazyk">EN</button>
+        </div>
         <div class="hamburger" id="hamburger-menu" aria-label="Otevřít navigaci" aria-expanded="false" role="button"
             tabindex="0">
             <span class="bar"></span>
@@ -72,27 +93,7 @@
             <a href="#certifikaty" data-i18n="nav-certifikaty">Certifikáty</a>
             <a href="#kontakt" data-i18n="nav-kontakt">Kontakt</a>
         </div>
-        <div class="nav-ovladani">
-            <button id="theme-toggle" class="theme-btn" aria-label="Přepnout světlý/tmavý režim" title="Změnit motiv">
-                <svg class="sun-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                </svg>
-                <svg class="moon-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-            </button>
-            <button id="language-toggle" class="lang-btn" aria-label="Přepnout jazyk">EN</button>
-        </div>
+        <div class="nav-overlay" id="nav-overlay"></div>
     </nav>
     <header id="uvod">
         <img src="./images/fotky/profil_fotka.webp" alt="Portrét - Jáchym Vondráček" class="profilova-fotka">
@@ -326,7 +327,7 @@
                             src="./images/fotky/a51ce0152771453.632383ae46b3b.webp" alt="Atmosférická fotografie"
                             loading="lazy">
                     </div>
-                      <div class="gallery-item" onclick="openLightbox(this, 'image')">
+                    <div class="gallery-item" onclick="openLightbox(this, 'image')">
                         <img srcset="./images/fotky/eab569152771453.632383ae44585.webp 800w"
                             sizes="(max-width: 600px) 100vw, 33vw"
                             src="./images/fotky/eab569152771453.632383ae44585.webp" alt="Atmosférická fotografie"

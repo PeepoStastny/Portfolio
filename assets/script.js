@@ -1,19 +1,71 @@
 const hamburger = document.getElementById('hamburger-menu');
 const navMenu = document.getElementById('nav-menu');
 const navLinks = document.querySelectorAll('.nav-odkazy a');
+const navOverlay = document.getElementById('nav-overlay');
 
-hamburger.addEventListener('click', () => {
-    const isActive = hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    hamburger.setAttribute('aria-expanded', isActive);
+function toggleMobileMenu(open) {
+    const shouldOpen = open !== undefined ? open : !navMenu.classList.contains('active');
+    hamburger.classList.toggle('active', shouldOpen);
+    navMenu.classList.toggle('active', shouldOpen);
+    if (navOverlay) navOverlay.classList.toggle('active', shouldOpen);
+    hamburger.setAttribute('aria-expanded', shouldOpen);
+    document.body.style.overflow = shouldOpen ? 'hidden' : 'auto';
+}
+
+hamburger.addEventListener('click', () => toggleMobileMenu());
+
+if (navOverlay) {
+    navOverlay.addEventListener('click', () => toggleMobileMenu(false));
+}
+
+// Plynulá navigace bez layout shiftu a s autokorekcí
+navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            const targetId = href.slice(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (navMenu && navMenu.classList.contains('active')) {
+                toggleMobileMenu(false);
+            }
+
+            if (targetElement) {
+                setTimeout(() => {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+
+                    const zkontrolovatADorovnat = () => {
+                        const rect = targetElement.getBoundingClientRect();
+                        const cilovaVyska = 80;
+                        if (Math.abs(rect.top - cilovaVyska) > 10) {
+                            window.scrollBy({
+                                top: rect.top - cilovaVyska,
+                                behavior: 'smooth'
+                            });
+                        }
+                    };
+
+                    setTimeout(zkontrolovatADorovnat, 400);
+                    setTimeout(zkontrolovatADorovnat, 800);
+
+                    history.pushState(null, null, href);
+                }, 50);
+            }
+        }
+    });
 });
 
-navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        hamburger.setAttribute('aria-expanded', 'false');
-    });
+window.addEventListener('load', () => {
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    }
 });
 
 const sections = document.querySelectorAll('header, section[id]');
@@ -95,11 +147,18 @@ function closeLightbox(event) {
 }
 
 document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        if (lightbox.classList.contains('active')) {
+            closeLightboxModal();
+        } else if (navMenu.classList.contains('active')) {
+            toggleMobileMenu(false);
+        }
+        return;
+    }
+
     if (!lightbox.classList.contains('active')) return;
 
-    if (e.key === 'Escape') {
-        closeLightboxModal();
-    } else if (e.key === 'ArrowRight') {
+    if (e.key === 'ArrowRight') {
         if (activeGalleryItems.length > 1) {
             currentItemIndex = (currentItemIndex + 1) % activeGalleryItems.length;
             showLightboxItem(activeGalleryItems[currentItemIndex]);
@@ -453,9 +512,7 @@ document.addEventListener("DOMContentLoaded", () => {
             applyLanguage(currentLang);
 
             if (navMenu && navMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', 'false');
+                toggleMobileMenu(false);
             }
         });
     }
