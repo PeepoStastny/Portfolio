@@ -18,7 +18,7 @@ if (navOverlay) {
     navOverlay.addEventListener('click', () => toggleMobileMenu(false));
 }
 
-// Plynulá navigace bez layout shiftu a s autokorekcí
+// Plynulá navigace bez layout shiftu a s dynamickým dorovnáním
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
@@ -47,8 +47,8 @@ navLinks.forEach(link => {
                         }
                     };
 
-                    setTimeout(zkontrolovatADorovnat, 400);
-                    setTimeout(zkontrolovatADorovnat, 800);
+                    setTimeout(zkontrolovatADorovnat, 350);
+                    setTimeout(zkontrolovatADorovnat, 700);
 
                     history.pushState(null, null, href);
                 }, 50);
