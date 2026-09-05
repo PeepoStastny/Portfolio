@@ -290,6 +290,13 @@ const translations = {
         "interest-cycling": "Cyklistika",
         "interest-audio": "Audiotechnika",
         "interest-gaming": "Videohry",
+        "meta-obor": "UI/UX & Grafický Designér",
+        "meta-vek": "24 let",
+        "meta-zkusenosti": "4+ roky praxe",
+        "exp-free-date": "2024 - Současnost",
+        "exp-free-title": "Freelance Designer",
+        "exp-free-company": "Na volné noze",
+        "exp-free-desc": "Zakázkový návrh digitálních produktů, uživatelských rozhraní, vizuálních identit a 3D grafiky pro přímé klienty.",
     },
     "en": {
         "nav-uvod": "Home",
@@ -391,6 +398,13 @@ const translations = {
         "interest-cycling": "Cycling",
         "interest-audio": "Audio Equipment",
         "interest-gaming": "Video Games",
+        "meta-obor": "UI/UX & Graphic Designer",
+        "meta-vek": "24 y/o",
+        "meta-zkusenosti": "4+ years of exp.",
+        "exp-free-date": "2024 - Present",
+        "exp-free-title": "Freelance Designer",
+        "exp-free-company": "Self-employed",
+        "exp-free-desc": "Custom design of digital products, user interfaces, visual brand identities, and 3D graphics for direct clients.",
     }
 };
 

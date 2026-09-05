@@ -114,25 +114,62 @@ body {
     }
 }
 
-.profilova-fotka {
+/* Profilová fotografie: Obal držící kruh, stín i animaci při hoveru */
+.profilova-fotka-obal {
     width: clamp(120px, 12vw, 160px);
     height: clamp(120px, 12vw, 160px);
     border-radius: 50%;
-    object-fit: cover;
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-    margin-bottom: 25px;
+    margin: 0 auto 25px auto;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background: transparent;
     transition: transform 0.4s ease, border-color 0.4s ease;
 }
 
-[data-theme="light"] .profilova-fotka {
+[data-theme="light"] .profilova-fotka-obal {
     border-color: rgba(0, 0, 0, 0.12);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
 }
 
-.profilova-fotka:hover {
+.profilova-fotka-obal:hover {
     transform: scale(1.02);
     border-color: #888;
+}
+
+/* Plynulá výměna: původní fotka mizí, transparentní nová se objevuje */
+.profilova-fotka-obal .profilova-fotka {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0;
+    border: none;
+    box-shadow: none;
+    border-radius: 50%;
+    transition: opacity 0.4s ease;
+}
+
+.profilova-fotka-obal .profilova-fotka.vychozi {
+    opacity: 1;
+    z-index: 1;
+}
+
+.profilova-fotka-obal .profilova-fotka.hover {
+    opacity: 0;
+    z-index: 2;
+}
+
+.profilova-fotka-obal:hover .profilova-fotka.vychozi {
+    opacity: 0;
+}
+
+.profilova-fotka-obal:hover .profilova-fotka.hover {
+    opacity: 1;
 }
 
 .linkedin-odkaz {
@@ -342,6 +379,25 @@ header p {
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     color: var(--text-muted);
 }
+.profil-metadata {
+    font-size: clamp(0.9rem, 1.2vw, 1.05rem);
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.meta-oddelovac {
+    color: var(--primary-color);
+    opacity: 0.6;
+    font-size: 0.8rem;
+    user-select: none;
+}
 
 .o-mne-sekce {
     max-width: min(1050px, 92vw);
@@ -418,7 +474,7 @@ header p {
     opacity: 1;
 }
 
-/* UI/UX Videa: Upravené rozvržení pro odstranění černých/šedých okrajů */
+/* UI/UX Videa */
 .dvoji-video-kontejner {
     column-span: all;
     display: grid;
@@ -447,7 +503,6 @@ header p {
     transform: translateY(-5px);
 }
 
-/* Video prvek – přizpůsobení velikosti bez ořezových pruhů */
 .rovnocenne-video video {
     width: 100%;
     height: 100%;
@@ -922,7 +977,7 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Responzivita: Přechod do jednoho sloupce až na telefonech */
+/* Responzivita */
 @media (max-width: 768px) {
     .dvoji-video-kontejner {
         grid-template-columns: 1fr;
@@ -976,7 +1031,7 @@ footer {
         scroll-behavior: auto;
     }
 
-    .profilova-fotka,
+    .profilova-fotka-obal,
     .gallery-item,
     .linkedin-odkaz,
     .manual-nahled-kontejner,
@@ -984,6 +1039,7 @@ footer {
         transition: none;
     }
 
+    .profilova-fotka-obal:hover,
     .gallery-item:hover,
     .manual-odkaz:hover .manual-nahled-kontejner {
         transform: none;

@@ -5,33 +5,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Portfolio Jáchyma Vondráčka. Profesionální 3D modely, grafický design, UI/UX, ilustrace a fotografie.">
-    <meta name="theme-color" content="#121212">
+        content="Portfolio of Jáchym Vondráček (Jachym Vondracek). UI/UX Design, 3D Modeling, Brand Identity & Digital Product Design.">
+    <meta name="author" content="Jáchym Vondráček">
 
-    <!-- Open Graph / LinkedIn / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://jachymvondracek.cz/">
-    <meta property="og:title" content="Bc. Jáchym Vondráček – Portfolio">
+    <meta property="og:site_name" content="Jáchym Vondráček Portfolio">
+    <meta property="og:title" content="Jáchym Vondráček — UI/UX & Graphic Designer | Portfolio">
     <meta property="og:description"
-        content="Portfolio zaměřené na UX/UI design, 3D modelování, vizuální identity a digitální komunikaci.">
-    <meta property="og:image" content="./images/fotky/profil_fotka.png">
+        content="Designér zaměřený na UI/UX, 3D modelování a vizuální identity. Portfolio focused on digital product design, 3D and visual systems.">
+    <meta property="og:image" content="https://jachymvondracek.cz/images/fotky/profil_fotka.png">
+    <meta property="og:image:alt" content="Jáchym Vondráček Portfolio">
 
-    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Bc. Jáchym Vondráček – Portfolio">
+    <meta name="twitter:url" content="https://jachymvondracek.cz/">
+    <meta name="twitter:title" content="Jáchym Vondráček — UI/UX & Graphic Designer | Portfolio">
     <meta name="twitter:description"
-        content="Portfolio zaměřené na UX/UI design, 3D modelování, vizuální identity a digitální komunikaci.">
-    <meta name="twitter:image" content="./images/fotky/profil_fotka.png">
+        content="Designér zaměřený na UI/UX, 3D modelování a vizuální identity. Portfolio focused on digital product design, 3D and visual systems.">
+    <meta name="twitter:image" content="https://jachymvondracek.cz/images/fotky/profil_fotka.png">
 
     <title>Portfolio - Jáchym Vondráček</title>
     <link rel="preload" href="./images/fotky/profil_fotka.webp" as="image" type="image/webp">
-    <link rel="icon" href="./images/favicon/favicon_.png">
+    <link rel="icon" href="./images/favicon/favicon_new.png">
     <link rel="stylesheet" href="./assets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- Ochrana proti probliknutí motivu a synchronizace barvy lišty -->
     <script>
         (function() {
             const saved = localStorage.getItem('preferredTheme');
@@ -96,8 +96,18 @@
         <div class="nav-overlay" id="nav-overlay"></div>
     </nav>
     <header id="uvod">
-        <img src="./images/fotky/profil_fotka.webp" alt="Portrét - Jáchym Vondráček" class="profilova-fotka">
+        <div class="profilova-fotka-obal">
+            <img src="./images/fotky/profil_fotka.webp" alt="Portrét - Jáchym Vondráček" class="profilova-fotka vychozi">
+            <img src="./images/fotky/profil_fotka_2.webp" alt="Portrét alternativní - Jáchym Vondráček" class="profilova-fotka hover">
+        </div>
         <h1 id="jmeno-autora">Bc. Jáchym Vondráček</h1>
+        <p class="profil-metadata">
+            <span data-i18n="meta-obor">UI/UX & Grafický Designér</span>
+            <span class="meta-oddelovac">•</span>
+            <span data-i18n="meta-vek">24 let</span>
+            <span class="meta-oddelovac">•</span>
+            <span data-i18n="meta-zkusenosti">4+ roky praxe</span>
+        </p>
         <a href="https://www.linkedin.com/in/jáchym-vondráček-9a1624200" target="_blank" class="linkedin-odkaz"
             title="Můj LinkedIn profil">
             <svg class="linkedin-logo" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -121,6 +131,15 @@
         <section class="timeline-sekce" id="zkusenosti">
             <h2 class="kategorie-nadpis" data-i18n="nadpis-zkusenosti">Zkušenosti a Vzdělání</h2>
             <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date" data-i18n="exp-free-date">2024 - Současnost</span>
+                        <h3 data-i18n="exp-free-title">Freelance Designer</h3>
+                        <h4 data-i18n="exp-free-company">Na volné noze</h4>
+                        <p data-i18n="exp-free-desc">Zakázkový návrh digitálních produktů, uživatelských rozhraní, vizuálních identit a 3D grafiky pro přímé klienty.</p>
+                    </div>
+                </div>
                 <div class="timeline-item">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">

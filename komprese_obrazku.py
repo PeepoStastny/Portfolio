@@ -67,6 +67,6 @@ for root, dirs, files in os.walk(SLOZKA_OBRAZKU):
 
 print(f"\nHotovo.")
 print(f"Nově zkomprimováno: {pocet_nove_prevedenych}")
-print(f"Bezpečně odstraněno původních souborů: {pocet_smazanych_originalu}")
+print(f"Odstraněno původních souborů: {pocet_smazanych_originalu}")
 if pocet_chyb > 0:
     print(f"Chyby: {pocet_chyb}")
