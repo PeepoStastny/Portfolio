@@ -16,7 +16,6 @@ pocet_smazanych_originalu = 0
 pocet_chyb = 0
 
 for root, dirs, files in os.walk(SLOZKA_OBRAZKU):
-    # Ponechání složky favicon bez zásahu
     dirs[:] = [d for d in dirs if d.lower() not in IGNOROVANE_SLOZKY]
 
     for file in files:
@@ -27,11 +26,9 @@ for root, dirs, files in os.walk(SLOZKA_OBRAZKU):
 
             pripraveno_ke_smazani = False
 
-            # Případ 1: WebP verze již byla vytvořena dříve
             if os.path.exists(cesta_k_webp) and os.path.getsize(cesta_k_webp) > 0:
                 pripraveno_ke_smazani = True
             else:
-                # Případ 2: WebP chybí, je nutné jej nejprve vygenerovat
                 try:
                     with Image.open(cesta_ke_zdroji) as img:
                         if img.mode in ("RGBA", "LA") or (img.mode == "P" and "transparency" in img.info):
@@ -46,7 +43,6 @@ for root, dirs, files in os.walk(SLOZKA_OBRAZKU):
 
                         img_export.save(cesta_k_webp, "WEBP", quality=KVALITA_WEBP, method=6)
 
-                    # Bezpečnostní kontrola, že nový soubor existuje na disku
                     if os.path.exists(cesta_k_webp) and os.path.getsize(cesta_k_webp) > 0:
                         pocet_nove_prevedenych += 1
                         pripraveno_ke_smazani = True
@@ -54,7 +50,6 @@ for root, dirs, files in os.walk(SLOZKA_OBRAZKU):
                     print(f"✗ Chyba při převodu {file}: {e}")
                     pocet_chyb += 1
 
-            # Smazání původního souboru proběhne pouze při stoprocentní existenci WebP
             if pripraveno_ke_smazani:
                 try:
                     os.remove(cesta_ke_zdroji)

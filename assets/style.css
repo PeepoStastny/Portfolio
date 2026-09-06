@@ -114,7 +114,6 @@ body {
     }
 }
 
-/* Profilová fotografie: Obal držící kruh, stín i animaci při hoveru */
 .profilova-fotka-obal {
     width: clamp(120px, 12vw, 160px);
     height: clamp(120px, 12vw, 160px);
@@ -139,7 +138,6 @@ body {
     border-color: #888;
 }
 
-/* Plynulá výměna: původní fotka mizí, transparentní nová se objevuje */
 .profilova-fotka-obal .profilova-fotka {
     position: absolute;
     top: 0;
@@ -196,7 +194,6 @@ body {
     fill: #0077b5;
 }
 
-/* Tlačítko pro stažení CV */
 .cv-tlacitko-obal {
     margin-top: 15px;
     display: flex;
@@ -226,7 +223,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Horní lišta s ovládáním a hamburgerem */
 .hlavni-navigace {
     position: fixed;
     top: 0;
@@ -342,7 +338,6 @@ body {
     visibility: visible;
 }
 
-/* Postranní vysouvací panel z pravého okraje */
 .nav-odkazy {
     position: fixed;
     top: 0;
@@ -409,6 +404,7 @@ header p {
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     color: var(--text-muted);
 }
+
 .profil-metadata {
     font-size: clamp(0.9rem, 1.2vw, 1.05rem);
     color: var(--text-muted);
@@ -474,7 +470,6 @@ header p {
     column-gap: clamp(15px, 2vw, 25px);
 }
 
-/* Galerie: zcela bez rámečků a stínů pro čistou průhlednost */
 .gallery-item {
     break-inside: avoid;
     margin-bottom: clamp(15px, 2vw, 25px);
@@ -504,7 +499,6 @@ header p {
     opacity: 1;
 }
 
-/* UI/UX Videa */
 .dvoji-video-kontejner {
     column-span: all;
     display: grid;
@@ -770,7 +764,6 @@ footer {
     font-weight: 300;
 }
 
-/* Časová osa – Sekce Zkušenosti & Vzdělání */
 .timeline-sekce {
     max-width: min(1200px, 92vw);
     margin: 0 auto clamp(50px, 8vh, 80px);
@@ -859,7 +852,6 @@ footer {
     letter-spacing: 1px;
 }
 
-/* Štítek indikující současný aktivní stav */
 .badge-soucasnost {
     display: inline-flex;
     align-items: center;
@@ -979,6 +971,8 @@ footer {
     flex-direction: column;
     justify-content: center;
     min-height: 120px;
+    cursor: pointer;
+    position: relative;
 }
 
 .cert-item:hover {
@@ -999,6 +993,10 @@ footer {
     font-size: 0.85rem;
     letter-spacing: 1.5px;
     text-transform: uppercase;
+}
+
+.cert-item .cert-nahled {
+    display: none;
 }
 
 .skills-interests-sekce {
@@ -1069,7 +1067,6 @@ footer {
     transform: translateY(-2px);
 }
 
-/* Responzivita */
 @media (max-width: 820px) {
     .timeline-dvousloupec {
         grid-template-columns: 1fr;
@@ -1147,9 +1144,6 @@ footer {
     }
 }
 
-/* ===================================================
-   TISKOVÝ STYL PRO FORMÁT A4 (STRIKTNÍ JEDNOSTRÁNKOVÉ CV)
-   =================================================== */
 @media print {
     @page {
         size: A4 portrait;
@@ -1166,7 +1160,6 @@ footer {
         overflow: visible !important;
     }
 
-    /* Skrytí komponent nevhodných pro list papíru */
     .animovane-pozadi,
     .hlavni-navigace,
     .nav-overlay,
@@ -1339,7 +1332,6 @@ footer {
         line-height: 1.2 !important;
     }
 
-    /* Dovednosti, Jazyky & Zájmy v tiskovém 4-sloupci */
     .skills-interests-sekce {
         padding: 0 !important;
         margin: 0 0 6px 0 !important;
@@ -1381,7 +1373,6 @@ footer {
         border-radius: 3px !important;
     }
 
-    /* Certifikace */
     .certifikaty-sekce {
         padding: 0 !important;
         margin: 0 !important;
@@ -1403,6 +1394,7 @@ footer {
         padding: 3px 5px !important;
         min-height: auto !important;
         text-align: left !important;
+        cursor: default !important;
     }
 
     .cert-item h3 {
