@@ -93,7 +93,7 @@ const observer = new IntersectionObserver((entries) => {
 
 sections.forEach(sec => observer.observe(sec));
 
-// Lightbox modal se správou položek pro listování klávesami
+// Lightbox modal se správou položek pro listování tlačítky i klávesami
 const lightbox = document.getElementById('lightbox');
 const mediaContainer = document.getElementById('lightbox-media-container');
 
@@ -119,6 +119,11 @@ function showLightboxItem(item) {
         newVideo.autoplay = true;
         mediaContainer.appendChild(newVideo);
     }
+
+    const navButtons = document.querySelectorAll('.lightbox-nav-btn');
+    navButtons.forEach(btn => {
+        btn.style.display = activeGalleryItems.length > 1 ? 'flex' : 'none';
+    });
 }
 
 function openLightbox(element, type) {
@@ -141,8 +146,24 @@ function closeLightboxModal() {
 }
 
 function closeLightbox(event) {
-    if (event.target === lightbox || event.target.className === 'close-btn') {
+    if (event.target === lightbox || event.target.classList.contains('close-btn')) {
         closeLightboxModal();
+    }
+}
+
+function nextLightboxItem(event) {
+    if (event) event.stopPropagation();
+    if (activeGalleryItems.length > 1) {
+        currentItemIndex = (currentItemIndex + 1) % activeGalleryItems.length;
+        showLightboxItem(activeGalleryItems[currentItemIndex]);
+    }
+}
+
+function prevLightboxItem(event) {
+    if (event) event.stopPropagation();
+    if (activeGalleryItems.length > 1) {
+        currentItemIndex = (currentItemIndex - 1 + activeGalleryItems.length) % activeGalleryItems.length;
+        showLightboxItem(activeGalleryItems[currentItemIndex]);
     }
 }
 
@@ -159,15 +180,9 @@ document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('active')) return;
 
     if (e.key === 'ArrowRight') {
-        if (activeGalleryItems.length > 1) {
-            currentItemIndex = (currentItemIndex + 1) % activeGalleryItems.length;
-            showLightboxItem(activeGalleryItems[currentItemIndex]);
-        }
+        nextLightboxItem();
     } else if (e.key === 'ArrowLeft') {
-        if (activeGalleryItems.length > 1) {
-            currentItemIndex = (currentItemIndex - 1 + activeGalleryItems.length) % activeGalleryItems.length;
-            showLightboxItem(activeGalleryItems[currentItemIndex]);
-        }
+        prevLightboxItem();
     }
 });
 
@@ -213,8 +228,8 @@ const translations = {
         "nadpis-ilustrace": "Ilustrace & Magazín",
         "nadpis-ui": "Ukázka UI/UX",
         "nadpis-manual": "Logomanuál",
-        "manual-p": "Kliknutím na náhled níže otevřete kompletní specifikaci vizuální identity v PDF formátu.",
-        "manual-btn": "Otevřít PDF",
+        "manual-p": "Kliknutím na náhled níže otevřete kompletní specifikaci vizuální identity.",
+        "manual-btn": "Prohlédnout manuál",
         "nadpis-kontakt": "Kontakt",
         "form-jmeno": "Vaše jméno",
         "form-email": "Váš email",
@@ -330,8 +345,8 @@ const translations = {
         "nadpis-ilustrace": "Illustration & Magazine",
         "nadpis-ui": "UI/UX Showcase",
         "nadpis-manual": "Brand Manual",
-        "manual-p": "Click the preview below to open the complete visual identity specification in PDF format.",
-        "manual-btn": "Open PDF",
+        "manual-p": "Click the preview below to open the complete visual identity specification.",
+        "manual-btn": "View manual",
         "nadpis-kontakt": "Contact",
         "form-jmeno": "Your Name",
         "form-email": "Your Email",
@@ -521,19 +536,37 @@ if (kontaktForm) {
     });
 }
 
-// Fade-in efekt načítání snímků galerie
-const lazyGalleryImages = document.querySelectorAll('.gallery-item img');
-
-lazyGalleryImages.forEach(img => {
-    if (img.complete) {
-        img.classList.add('nacteno');
-    } else {
-        img.addEventListener('load', () => img.classList.add('nacteno'));
-        img.addEventListener('error', () => img.classList.add('nacteno'));
+// Dynamické generování zbývajících snímků logomanuálu (strany 2 až 26)
+function generovatSnimkyLogomanualu() {
+    const manualGallery = document.querySelector('.manual-gallery');
+    if (manualGallery) {
+        for (let i = 2; i <= 26; i++) {
+            const item = document.createElement('div');
+            item.className = 'gallery-item skryty-snimek';
+            item.setAttribute('onclick', "openLightbox(this, 'image')");
+            item.innerHTML = `<img src="./images/logomanualy/killerbee/${i}.webp" alt="Logomanuál - strana ${i}" loading="lazy">`;
+            manualGallery.appendChild(item);
+        }
     }
-});
+}
+
+// Fade-in efekt načítání snímků galerie
+function nastavitFadeInEfekt() {
+    const lazyGalleryImages = document.querySelectorAll('.gallery-item img');
+
+    lazyGalleryImages.forEach(img => {
+        if (img.complete) {
+            img.classList.add('nacteno');
+        } else {
+            img.addEventListener('load', () => img.classList.add('nacteno'));
+            img.addEventListener('error', () => img.classList.add('nacteno'));
+        }
+    });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
+    generovatSnimkyLogomanualu();
+    nastavitFadeInEfekt();
     applyLanguage(currentLang);
 
     const langToggleBtn = document.getElementById("language-toggle");

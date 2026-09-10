@@ -449,16 +449,19 @@
         </section>
         <section class="manual-sekce" id="manual">
             <h2 data-i18n="nadpis-manual">Logomanuál</h2>
-            <p data-i18n="manual-p">Kliknutím na náhled níže otevřete kompletní specifikaci vizuální identity v PDF
-                formátu.</p>
-            <a href="./pdf/logomanual_V1.4.pdf" target="_blank" class="manual-odkaz">
-                <div class="manual-nahled-kontejner">
-                    <img src="./images/fotky/logomanual_titul.webp" alt="Titulní strana logomanuálu" loading="lazy">
-                    <div class="manual-overlay">
-                        <span data-i18n="manual-btn">Otevřít PDF</span>
+            <p data-i18n="manual-p">Kliknutím na náhled níže otevřete kompletní specifikaci vizuální identity.</p>
+            
+            <div class="gallery-container manual-gallery">
+                <!-- 1. snímek: Titulní strana (jediný viditelný prvek v HTML kódu) -->
+                <div class="gallery-item manual-nahled-obal" onclick="openLightbox(this, 'image')">
+                    <div class="manual-nahled-kontejner">
+                        <img src="./images/logomanualy/killerbee/1.webp" alt="Logomanuál - strana 1" loading="lazy">
+                        <div class="manual-overlay">
+                            <span data-i18n="manual-btn">Prohlédnout manuál</span>
+                        </div>
                     </div>
                 </div>
-            </a>
+            </div>
         </section>
         <section class="certifikaty-sekce" id="certifikaty">
             <h2 class="kategorie-nadpis" data-i18n="nadpis-certifikaty">Certifikace a Ocenění</h2>
@@ -530,7 +533,9 @@
     </footer>
     <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
         <span class="close-btn">&times;</span>
+        <button class="lightbox-nav-btn prev-btn" onclick="prevLightboxItem(event)" aria-label="Předchozí snímek">&#10094;</button>
         <div id="lightbox-media-container"></div>
+        <button class="lightbox-nav-btn next-btn" onclick="nextLightboxItem(event)" aria-label="Další snímek">&#10095;</button>
     </div>
     <button id="back-to-top" aria-label="Návrat nahoru">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"

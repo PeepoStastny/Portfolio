@@ -544,10 +544,19 @@ header p {
     font-size: clamp(0.95rem, 1.3vw, 1.1rem);
 }
 
-.manual-odkaz {
-    display: inline-block;
-    width: 100%;
-    text-decoration: none;
+.manual-gallery {
+    max-width: min(520px, 90vw);
+    margin: 0 auto;
+    column-count: 1;
+    padding: 0;
+}
+
+.manual-nahled-obal {
+    margin-bottom: 0;
+}
+
+.skryty-snimek {
+    display: none !important;
 }
 
 .manual-nahled-kontejner {
@@ -594,11 +603,11 @@ header p {
     font-weight: bold;
 }
 
-.manual-odkaz:hover .manual-nahled-kontejner {
+.manual-nahled-obal:hover .manual-nahled-kontejner {
     transform: translateY(-5px);
 }
 
-.manual-odkaz:hover .manual-overlay {
+.manual-nahled-obal:hover .manual-overlay {
     opacity: 1;
 }
 
@@ -741,6 +750,46 @@ footer {
     font-size: 40px;
     cursor: pointer;
     font-weight: 300;
+    z-index: 1010;
+}
+
+.lightbox-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #f0f0f0;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    user-select: none;
+    z-index: 1005;
+    padding: 0;
+}
+
+.lightbox.active .lightbox-nav-btn {
+    display: flex;
+}
+
+.lightbox-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #fff;
+    transform: translateY(-50%) scale(1.08);
+}
+
+.prev-btn {
+    left: clamp(15px, 3vw, 40px);
+}
+
+.next-btn {
+    right: clamp(15px, 3vw, 40px);
 }
 
 .timeline-sekce {
@@ -1094,6 +1143,12 @@ footer {
     .o-mne-sekce {
         padding: 30px 15px;
     }
+
+    .lightbox-nav-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1118,7 +1173,7 @@ footer {
 
     .profilova-fotka-obal:hover,
     .gallery-item:hover,
-    .manual-odkaz:hover .manual-nahled-kontejner {
+    .manual-nahled-obal:hover .manual-nahled-kontejner {
         transform: none;
     }
 }
