@@ -122,8 +122,8 @@ function showLightboxItem(item) {
 }
 
 function openLightbox(element, type) {
-    const container = element.closest('.gallery-container') || element.parentElement;
-    activeGalleryItems = Array.from(container.querySelectorAll('.gallery-item'));
+    const container = element.closest('.gallery-container');
+    activeGalleryItems = container ? Array.from(container.querySelectorAll('.gallery-item')) : [element];
     currentItemIndex = activeGalleryItems.indexOf(element);
 
     showLightboxItem(element);
